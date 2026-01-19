@@ -148,16 +148,44 @@
   </header>
 
   <main>
-    <!-- Wednesday -->
-    <details open>
-      <summary>
-        <div class="day-title">
-          <span class="day-name">Wednesday – Arrival & Santa Monica</span>
-          <span class="day-date">May 13, 2026</span>
+    <section id="home" aria-label="Home">
+      <details open>
+        <summary style="cursor: default; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-weight:700; font-size:1.05rem;">Itinerary — Select a day</div>
+            <div style="font-size:0.85rem; color:#555;">Click a date to view that day's plans</div>
+          </div>
+        </summary>
+        <div style="padding:1rem 1.2rem 1.6rem; display:grid; gap:0.75rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <button class="day-card" data-day="day-13">Wednesday — May 13, 2026</button>
+          <button class="day-card" data-day="day-14">Thursday — May 14, 2026</button>
+          <button class="day-card" data-day="day-15">Friday — May 15, 2026</button>
+          <button class="day-card" data-day="day-16">Saturday — May 16, 2026</button>
         </div>
-        <span class="chevron">▶</span>
-      </summary>
-      <div class="day-content">
+      </details>
+    </section>
+
+    <style>
+      .day-card {
+        background:#fff; border:1px solid #ddd; padding:0.9rem 1rem; border-radius:8px; cursor:pointer; text-align:left; font-weight:600;
+      }
+      .day-card:hover { box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+      .day-page { display:none; }
+      .day-page.active { display:block; }
+      .back-link { display:inline-block; margin:0 0 0.7rem 0; color:#0066cc; cursor:pointer; }
+    </style>
+    <!-- Wednesday -->
+    <section class="day-page" id="day-13">
+      <a class="back-link" data-back>← Back to dates</a>
+      <details>
+        <summary>
+          <div class="day-title">
+            <span class="day-name">Wednesday – Arrival & Santa Monica</span>
+            <span class="day-date">May 13, 2026</span>
+          </div>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="day-content">
         <div class="block">
           <div class="time-range">3:00 – 5:30 p.m.</div>
           <div class="block-title">Santa Monica Afternoon</div>
@@ -179,18 +207,21 @@
           <p>Make a reservation for your full headcount and request large tables or a group menu.</p>
         </div>
       </div>
-    </details>
+      </details>
+    </section>
 
     <!-- Thursday -->
-    <details>
-      <summary>
-        <div class="day-title">
-          <span class="day-name">Thursday – Main Stage Commencement</span>
-          <span class="day-date">May 14, 2026</span>
-        </div>
-        <span class="chevron">▶</span>
-      </summary>
-      <div class="day-content">
+    <section class="day-page" id="day-14">
+      <a class="back-link" data-back>← Back to dates</a>
+      <details>
+        <summary>
+          <div class="day-title">
+            <span class="day-name">Thursday – Main Stage Commencement</span>
+            <span class="day-date">May 14, 2026</span>
+          </div>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="day-content">
         <div class="block">
           <div class="time-range">9:00 – 11:30 a.m.</div>
           <div class="block-title">Scenic LA Morning (Optional)</div>
@@ -241,18 +272,21 @@
           </ul>
         </div>
       </div>
-    </details>
+      </details>
+    </section>
 
     <!-- Friday -->
-    <details>
-      <summary>
-        <div class="day-title">
-          <span class="day-name">Friday – Marshall & Leventhal</span>
-          <span class="day-date">May 15, 2026</span>
-        </div>
-        <span class="chevron">▶</span>
-      </summary>
-      <div class="day-content">
+    <section class="day-page" id="day-15">
+      <a class="back-link" data-back>← Back to dates</a>
+      <details>
+        <summary>
+          <div class="day-title">
+            <span class="day-name">Friday – Marshall & Leventhal</span>
+            <span class="day-date">May 15, 2026</span>
+          </div>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="day-content">
         <div class="block">
           <div class="time-range">7:30 – 8:30 a.m.</div>
           <div class="block-title">Quick Breakfast</div>
@@ -329,18 +363,21 @@
           </ul>
         </div>
       </div>
-    </details>
+      </details>
+    </section>
 
-    <!-- Saturday -->
-    <details>
-      <summary>
-        <div class="day-title">
-          <span class="day-name">Saturday – Extra Celebration / Free Day</span>
-          <span class="day-date">May 16, 2026</span>
-        </div>
-        <span class="chevron">▶</span>
-      </summary>
-      <div class="day-content">
+    <!-- Saturday (kept but not shown on home) -->
+    <section class="day-page" id="day-16">
+      <a class="back-link" data-back>← Back to dates</a>
+      <details>
+        <summary>
+          <div class="day-title">
+            <span class="day-name">Saturday – Extra Celebration / Free Day</span>
+            <span class="day-date">May 16, 2026</span>
+          </div>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="day-content">
         <div class="block">
           <div class="time-range">10:30 a.m. – 12:30 p.m.</div>
           <div class="block-title">Friends’ Brunch</div>
@@ -358,7 +395,37 @@
           </ul>
         </div>
       </div>
-    </details>
+      </details>
+    </section>
   </main>
+  <script>
+    (function(){
+      const home = document.getElementById('home');
+      const cards = Array.from(document.querySelectorAll('.day-card'));
+      const pages = Array.from(document.querySelectorAll('.day-page'));
+
+      function showHome(){
+        home.style.display = '';
+        pages.forEach(p=>p.classList.remove('active'));
+        window.location.hash = '';
+      }
+
+      function showPage(id){
+        home.style.display = 'none';
+        pages.forEach(p=> p.id === id ? p.classList.add('active') : p.classList.remove('active'));
+        window.location.hash = id;
+      }
+
+      cards.forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.day)));
+      document.querySelectorAll('[data-back]').forEach(el => el.addEventListener('click', showHome));
+
+      // Restore from hash on load
+      if(window.location.hash){
+        const id = window.location.hash.replace('#','');
+        const exists = document.getElementById(id);
+        if(exists) showPage(id);
+      }
+    })();
+  </script>
 </body>
 </html>
